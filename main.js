@@ -70,7 +70,7 @@
        console.log(listAccuracy);
        console.log(total/count);
 
-       $("#info").html("Number of times found:  "+ count + "  -  Average accuracy radius: "+ (total/count)/2);
+       $("#info").html("Number of times found:  "+ count + "/n Average accuracy radius: "+ (total/count)/2);
 
     }
     // Adds updated markers onto the map
@@ -93,7 +93,7 @@
 
       //updates the current location marker
        locationMarker = L.marker(e.latlng).addTo(map)
-      .bindPopup("You are within " + radiusA + " meters from this point").openPopup();
+      .bindPopup("You are within " + radiusA + " meters from this point");
       circle = L.circle(e.latlng, radiusA).addTo(map);
 
     //adds circle that acts as the geofence that is centered around movable marker
