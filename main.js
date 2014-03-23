@@ -77,7 +77,7 @@
        var averageAccuracy = (Math.round(total/count)/100)*100;
 
 
-       $("#info").html("Number of times found:  "+ count + "<br/> Average accuracy radius: "+ averageAccuracy/2 + " <br/>Most inaccurate reading: " + highest/2);
+       $("#info").html("Number of times found:  "+ count + "<br/> Average accuracy radius: "+ averageAccuracy/2 +"m"+ " <br/>Most inaccurate reading: " + highest/2+"m");
 
     }
     // Adds updated markers onto the map
