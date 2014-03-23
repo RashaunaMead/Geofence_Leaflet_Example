@@ -74,7 +74,7 @@
        console.log(count);
        console.log(listAccuracy);
        console.log(total/count);
-       var averageAccuracy = (Math.round(count/total)/100)*100;
+       var averageAccuracy = (Math.round(total/count)/100)*100;
 
 
        $("#info").html("Number of times found:  "+ count + "<br/> Average accuracy radius: "+ averageAccuracy/2 + " <br/>Most inaccurate reading: " + highest/2);
