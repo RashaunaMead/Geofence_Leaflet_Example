@@ -2,7 +2,7 @@
     var locationlng;
     var locationlat;
     var boundsCirc;
-    var radius =300;
+    var radius =30;
     var accuracyCirc;
     var cirLat=43.07790859834721;
     var cirLng=-89.37177476473153;
@@ -28,7 +28,7 @@
     // initial zoom and coords, updated on location found
     map.setView([43.07790859834721, -89.37177476473153], 4);
     // sets location as center of map and watches for new updates
-    map.locate({setView:true, watch:true} );
+    map.locate({setView:true, watch:true, enableHighAccuracy: true} );
      
      // initial marker and circle, coordinates will be updated on location found
      locationMarker = L.marker([43.07790859834721, -89.37177476473153]).addTo(map);
