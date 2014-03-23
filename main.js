@@ -15,6 +15,8 @@
     var markerNotOnMap =true;
     var latFound;
     var lngFound;
+    var count = 0;
+    var listAccuracy = [];  
  
     function loadmap(){
   
@@ -55,6 +57,20 @@
 
        updateMarkers(e);
 
+       count++;
+
+       listAccuracy.push(e.accuracy);
+       var total = 0;
+       for(i = 0; i < listAccuracy.length ; i++){
+          
+          total = listAccuracy[i] + total;
+       }
+
+       console.log(count);
+       console.log(listAccuracy);
+       console.log(total/count);
+
+       $("#info").html("Number of times found:  "+ count + "  -  Average accuracy radius: "+ (total/count)/2);
 
     }
     // Adds updated markers onto the map
@@ -69,7 +85,7 @@
           markerMove = L.marker(new L.LatLng(e.latlng.lat+stagger,e.latlng.lng+stagger), {
           draggable: true,
         });
-        markerMove.bindPopup('This marker is draggable. And when your next geo location is found it will draw a red circle with a 300m radius');
+        markerMove.bindPopup('This marker is draggable The red circle around it represents the geofence with a radius of 30m. When your location enters the red circle you will be notified.');
         markerMove.addTo(map);
 
         markerNotOnMap=false;
@@ -80,7 +96,7 @@
       .bindPopup("You are within " + radiusA + " meters from this point").openPopup();
       circle = L.circle(e.latlng, radiusA).addTo(map);
 
-    //adds circle that acts as the geofence that is centered around moveable marker
+    //adds circle that acts as the geofence that is centered around movable marker
      circleMove = L.circle([cirLat,cirLng], radius,{color:'red',fillOpacity: 0.2}).addTo(map);
      console.log(markerMove._latlng.lat);
 
