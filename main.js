@@ -20,12 +20,14 @@
  
     function loadmap(){
   
-    var map = L.map('map');
+    var map = L.map('map',  { zoomControl:false });
 
       L.tileLayer('https://{s}.tiles.mapbox.com/v3/rashauna.hb2aepgd/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
           maxZoom: 18
       }).addTo(map);
+
+      // L.control( zoomControl: false);
 
     // initial zoom and coords, updated on location found
     map.setView([43.07790859834721, -89.37177476473153], 4);
@@ -61,16 +63,20 @@
 
        listAccuracy.push(e.accuracy);
        var total = 0;
+       var highest=0; 
        for(i = 0; i < listAccuracy.length ; i++){
-          
+          if(listAccuracy[i]>highest){
+            highest = listAccuracy[i];
+          }
           total = listAccuracy[i] + total;
        }
 
        console.log(count);
        console.log(listAccuracy);
        console.log(total/count);
+       var averageAccuracy = Math.round(((total/count)/2)/100);
 
-       $("#info").html("Number of times found:  "+ count + "/n Average accuracy radius: "+ (total/count)/2);
+       $("#info").html("Number of times found:  "+ count + "<br/> Average accuracy radius: "+ averageAccuracy + " <br/>Most inaccurate reading: " + highest);
 
     }
     // Adds updated markers onto the map
